@@ -4,11 +4,13 @@ window.onload = function () {
     const menu = document.querySelector(".navbar-auth-slide");
     const overlay = document.querySelector(".menu-overlay");
     const closeButton = document.querySelector(".close-menu");
+    const navbarLinks = document.querySelectorAll(".navbar-links a"); // 取得所有選單連結
 
     if (menuButton && menu && overlay && closeButton) {
-        menuButton.addEventListener("click", function () {
+        menuButton.addEventListener("click", function (event) {
             menu.classList.add("open");
             overlay.classList.add("open");
+            event.stopPropagation(); // 防止點擊觸發關閉
         });
 
         closeButton.addEventListener("click", function () {
@@ -19,6 +21,22 @@ window.onload = function () {
         overlay.addEventListener("click", function () {
             menu.classList.remove("open");
             overlay.classList.remove("open");
+        });
+
+        // 點擊其他區域關閉 `.navbar-auth-slide`
+        document.addEventListener("click", function (event) {
+            if (!menu.contains(event.target) && !menuButton.contains(event.target)) {
+                menu.classList.remove("open");
+                overlay.classList.remove("open");
+            }
+        });
+
+        // **🔹 點擊選單內連結後關閉選單**
+        navbarLinks.forEach((link) => {
+            link.addEventListener("click", function () {
+                menu.classList.remove("open");
+                overlay.classList.remove("open");
+            });
         });
     }
 

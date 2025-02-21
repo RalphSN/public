@@ -164,9 +164,6 @@ window.onload = function () {
     item.addEventListener("mouseenter", () => {
       isHovered = true;
       inner.style.transform = "scale(2)";
-      inner.style.transition =
-        "transform 0.35s ease-in-out, opacity 0.35s ease-in-out";
-      // inner.style.zIndex = "10";
       details.style.visibility = "visible";
       setTimeout(() => {
         if (isHovered) details.style.opacity = "1";
@@ -182,7 +179,6 @@ window.onload = function () {
           setTimeout(() => {
             if (!isHovered) {
               inner.style.transform = "scale(1)";
-              // inner.style.zIndex = "5";
               details.style.visibility = "hidden";
               details.style.opacity = "0";
             }
@@ -190,27 +186,5 @@ window.onload = function () {
         }
       }, 10);
     });
-
-    // **確保鼠標進入 details 內不會消失**
-    // details.addEventListener("mouseenter", () => {
-    //   isHovered = true;
-    // });
-
-    // details.addEventListener("mouseleave", () => {
-    //   isHovered = false;
-    //   setTimeout(() => {
-    //     if (!isHovered) {
-    //       details.style.opacity = "0";
-    //       setTimeout(() => {
-    //         inner.style.position = "relative";
-    //         inner.style.top = "auto";
-    //         inner.style.left = "auto";
-    //         inner.style.transform = "scale(1)";
-    //         inner.style.zIndex = "1";
-    //         details.style.display = "none";
-    //       }, 300);
-    //     }
-    //   }, 100);
-    // });
   });
 };
